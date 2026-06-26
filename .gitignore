@@ -1,0 +1,25 @@
+# local environment
+.env*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# dependencies / build output
+node_modules/
+dist/
+build/
+.vite/
+.wrangler/
+
+# unrelated local prototypes kept out of the Beat the Clown repo
+/GameAssetForge/
+/mouse_wars/
+/space-shapes/
+/synthwave-shooter/
+/worms/
+/tests/
+/src/
+/clown-local-server.cjs
+/main.js
+/styles.css
+/wrangler.jsonc

@@ -1,0 +1,19 @@
+{
+  "name": "beat-the-clown",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dark-comedy 2D physics contraption game prototype.",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.cjs",
+    "dev": "node server.cjs",
+    "check": "node --check clown-prototype.js"
+  },
+  "keywords": [
+    "game",
+    "canvas",
+    "physics",
+    "prototype"
+  ],
+  "license": "UNLICENSED"
+}
