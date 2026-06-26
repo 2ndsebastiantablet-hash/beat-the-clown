@@ -42,13 +42,38 @@ You can also open `index.html` directly in a browser for quick static testing.
 npm start
 npm run dev
 npm run check
+npm run build
+npm run deploy
 ```
 
 `npm run check` runs a JavaScript syntax check on the main game file.
+`npm run build` copies the static game files into `public/` and then runs the syntax check.
+`npm run deploy` builds the public assets and then runs `wrangler deploy`.
 
 ## Deployment
 
-This is currently a static vanilla JavaScript project. It can be deployed from the repository root on GitHub Pages or any static host. The root URL serves `index.html`, which loads the game directly.
+This is currently a static vanilla JavaScript project. The root URL serves `index.html`, which loads the game directly.
+
+### Cloudflare Workers Static Assets
+
+The repository includes `wrangler.jsonc` configured for Workers Static Assets, so Cloudflare can deploy with:
+
+```sh
+npx wrangler deploy
+```
+
+The deployment serves files from `public/`. The current game files are committed there so a direct `npx wrangler deploy` works even when Cloudflare does not run a separate build step first.
+
+### Cloudflare Pages Alternative
+
+Cloudflare Pages can also host the project as a static site:
+
+- Build command: `npm run build`
+- Build output directory: `public`
+- Root directory: `/`
+- Deploy command: leave blank
+
+Pages should not use `npx wrangler deploy`; that command is for the Workers Static Assets setup.
 
 ## Source Of Truth
 

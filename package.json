@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server.cjs",
     "dev": "node server.cjs",
-    "check": "node --check clown-prototype.js"
+    "check": "node --check clown-prototype.js",
+    "build": "node build-public.cjs && npm run check",
+    "deploy": "npm run build && wrangler deploy"
   },
   "keywords": [
     "game",
