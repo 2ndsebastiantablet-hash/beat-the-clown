@@ -17,8 +17,8 @@ build/
 /space-shapes/
 /synthwave-shooter/
 /worms/
-/tests/
-/src/
+/src/**/*.js
+/tests/*.js
 /clown-local-server.cjs
 /main.js
 /styles.css

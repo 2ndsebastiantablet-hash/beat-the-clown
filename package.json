@@ -1,21 +1,30 @@
 {
-  "name": "beat-the-clown",
+  "name": "maze-tower",
   "version": "0.1.0",
   "private": true,
-  "description": "Dark-comedy 2D physics contraption game prototype.",
-  "type": "commonjs",
+  "description": "First-person PS1-style maze tower browser game prototype.",
+  "type": "module",
   "scripts": {
-    "start": "node server.cjs",
-    "dev": "node server.cjs",
-    "check": "node --check clown-prototype.js",
-    "build": "node build-public.cjs && npm run check",
-    "deploy": "npm run build && wrangler deploy"
+    "start": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "npm run check && npm run test && vite build"
   },
   "keywords": [
     "game",
-    "canvas",
-    "physics",
-    "prototype"
+    "threejs",
+    "maze",
+    "ps1"
   ],
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "three": "^0.166.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.166.0",
+    "typescript": "^5.5.4",
+    "vite": "^8.1.0",
+    "vitest": "^4.1.9"
+  }
 }

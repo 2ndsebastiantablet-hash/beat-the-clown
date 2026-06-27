@@ -1,86 +1,62 @@
-# Beat the Clown
+# MAZE TOWER
 
-Beat the Clown is a dark-comedy 2D physics contraption game prototype built with vanilla HTML, CSS, and JavaScript.
+MAZE TOWER is a complete first-person PS1-style browser maze game built with Vite, TypeScript, and Three.js.
 
-The current prototype focuses on:
-
-- A giant-head cartoon clown character with no torso
-- Layered damage, bones, organs, gore, regeneration, and sandbox modifiers
-- Audience reactions, scoring, combo feedback, and requests
-- A first regular performance loop where items drop from a pipe, must be wired manually, and activate through trigger/action chains
-- A sandbox mode with character spawning, editing, item tools, and runtime mods
+The player starts at the outer edge of a random maze. A tall tower stands at the exact center. Reach the tower, enter the base door, climb the spiral stairs, collect the glowing orb at the top, then return to the spawn pedestal to win.
 
 ## Running Locally
 
-Install dependencies is not required because the project has no external packages.
-
 ```sh
-npm start
+npm install
+npm run dev
 ```
 
-Then open:
+Then open the Vite URL shown in the terminal. The game runs at `/`.
 
-```txt
-http://127.0.0.1:8765
-```
+## Controls
 
-You can also open `index.html` directly in a browser for quick static testing.
+- `W`, `A`, `S`, `D` - move
+- Mouse - look
+- `Space` - jump
+- `Tab` - toggle crouch
+- `Escape` - pause or resume
+- `E` or left click - interact
 
-## Project Structure
-
-- `index.html` - root game page for deployment
-- `clown-prototype.html` - alternate direct prototype page
-- `clown-prototype.css` - game UI and canvas styling
-- `clown-prototype.js` - gameplay, character, physics, sandbox, performance, scoring, and rendering systems
-- `server.cjs` - tiny local static server
-- `CLOWN_PROTOTYPE.md` - implementation notes and system documentation
-- `package.json` - project scripts and metadata
+Pointer lock starts when gameplay begins. If the browser releases the pointer lock, the game pauses.
 
 ## Scripts
 
 ```sh
-npm start
-npm run dev
 npm run check
+npm test
 npm run build
-npm run deploy
 ```
 
-`npm run check` runs a JavaScript syntax check on the main game file.
-`npm run build` copies the static game files into `public/` and then runs the syntax check.
-`npm run deploy` builds the public assets and then runs `wrangler deploy`.
+`npm run build` typechecks, runs the unit tests, and writes the deployable static build into `public/` for the existing Cloudflare static-assets setup.
+
+## Project Structure
+
+- `index.html` - root game shell
+- `src/main.ts` - application entry point
+- `src/runtime/MazeTowerGame.ts` - Three.js scene, controls, collision response, UI state, and gameplay loop
+- `src/game/maze.ts` - random maze generation and pathfinding
+- `src/game/world.ts` - grid/world coordinate mapping, tower geometry constants, stair collision, and walkability checks
+- `src/game/progression.ts` - objective, orb, pedestal, and win-state progression
+- `src/render/textures.ts` - procedural low-resolution pixel textures
+- `tests/` - unit tests for maze generation, progression, and world collision helpers
+- `ASSET_CREDITS.md` - texture and asset credit notes
 
 ## Deployment
 
-This is currently a static vanilla JavaScript project. The root URL serves `index.html`, which loads the game directly.
-
-### Cloudflare Workers Static Assets
-
-The repository includes `wrangler.jsonc` configured for Workers Static Assets, so Cloudflare can deploy with:
+The repository keeps the existing Cloudflare Workers Static Assets shape:
 
 ```sh
+npm run build
 npx wrangler deploy
 ```
 
-The deployment serves files from `public/`. The current game files are committed there so a direct `npx wrangler deploy` works even when Cloudflare does not run a separate build step first.
+The `wrangler.jsonc` asset directory is `./public`.
 
-### Cloudflare Pages Alternative
+## Legacy Files
 
-Cloudflare Pages can also host the project as a static site:
-
-- Build command: `npm run build`
-- Build output directory: `public`
-- Root directory: `/`
-- Deploy command: leave blank
-
-Pages should not use `npx wrangler deploy`; that command is for the Workers Static Assets setup.
-
-## Source Of Truth
-
-The GitHub repository for this project is:
-
-```txt
-https://github.com/2ndsebastiantablet-hash/beat-the-clown
-```
-
-All future Beat the Clown changes should be committed and pushed to that repository.
+The old Beat the Clown prototype files are still present in the repository history and some root files remain for reference, but `/` now serves MAZE TOWER.
